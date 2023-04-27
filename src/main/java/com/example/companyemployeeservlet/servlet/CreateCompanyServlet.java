@@ -16,7 +16,8 @@ import java.util.List;
 public class CreateCompanyServlet extends HttpServlet {
 
     private CompanyManager companyManager = new CompanyManager();
-    List<String> countries = Arrays.asList("Armenai", "USA", "Russia", "France");
+    List<String> countries = Arrays.asList("Armenia", "USA", "Russia", "France");
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("countryList", countries);
@@ -25,6 +26,7 @@ public class CreateCompanyServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
         String name = req.getParameter("name");
         String country = req.getParameter("country");
         Company company = new Company();
