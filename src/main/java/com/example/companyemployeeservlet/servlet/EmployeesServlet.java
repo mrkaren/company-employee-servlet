@@ -1,8 +1,6 @@
 package com.example.companyemployeeservlet.servlet;
 
-import com.example.companyemployeeservlet.manager.CompanyManager;
 import com.example.companyemployeeservlet.manager.EmployeeManager;
-import com.example.companyemployeeservlet.model.Company;
 import com.example.companyemployeeservlet.model.Employee;
 
 import javax.servlet.ServletException;
@@ -20,8 +18,15 @@ public class EmployeesServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Employee> all = employeeManager.getAll();
-        req.setAttribute("employees", all);
+        String keyword = req.getParameter("keyword");
+        List<Employee> result = null;
+        if(keyword == null || keyword.equals("")){
+            result  = employeeManager.getAll();
+        }else {
+            result = employeeManager.search(keyword);
+        }
+
+        req.setAttribute("employees", result);
         req.getRequestDispatcher("WEB-INF/employees.jsp").forward(req, resp);
     }
 }

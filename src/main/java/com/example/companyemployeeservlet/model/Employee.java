@@ -14,5 +14,6 @@ public class Employee {
     private String name;
     private String surname;
     private String email;
+    private String picName;
     private Company company;
 }

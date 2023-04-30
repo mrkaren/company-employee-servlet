@@ -10,7 +10,7 @@
 <a href="/employees"> Back </a>
 
 <h2>Create Employee</h2>
-<form action="/createEmployee" method="post">
+<form action="/createEmployee" method="post" enctype="multipart/form-data">
     name: <input type="text" name="name"><br>
     surname: <input type="text" name="surname"><br>
     email: <input type="text" name="email"><br>
@@ -19,7 +19,9 @@
         <% for (Company company : companies) { %>
         <option value="<%=company.getId()%>"><%=company.getName()%> <%=company.getCountry()%></option>
         <% }%>
-    </select>
+    </select><br>
+    image:
+    <input type="file" name="profilePic"> <br>
     <input type="submit" value="create">
 </form>
 </body>
